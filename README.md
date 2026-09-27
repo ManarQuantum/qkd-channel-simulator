@@ -18,14 +18,14 @@ Rather than implementing BB84 as a quantum circuit, this project uses a **classi
 
 The simulator is designed to:
 
-* model the essential probabilistic behavior of BB84;
-* distinguish channel loss from channel errors;
-* model a simplified intercept-resend attack;
-* measure Quantum Bit Error Rate (QBER);
-* estimate secret-key generation performance;
-* investigate individual and combined channel impairments;
-* visualize the relationship between channel conditions and QKD performance;
-* provide a reproducible computational experiment suitable for further extension.
+* Model the essential probabilistic behavior of BB84.
+* Distinguish channel loss from channel errors.
+* Model a simplified intercept-resend attack.
+* Measure Quantum Bit Error Rate (QBER).
+* Estimate secret-key generation performance.
+* Investigate individual and combined channel impairments.
+* Visualize the relationship between channel conditions and QKD performance.
+* Provide a reproducible computational experiment suitable for further extension.
 
 ---
 
@@ -62,8 +62,8 @@ QBER / Secret-Key Analysis
 
 Each signal is represented by:
 
-* a random bit: `0` or `1`;
-* a randomly selected basis: `Z` or `X`.
+* A random bit: `0` or `1`.
+* A randomly selected basis: `Z` or `X`.
 
 Bob independently selects a measurement basis.
 
@@ -107,10 +107,10 @@ $$
 
 For an attacked signal, Eve:
 
-1. intercepts the signal;
-2. randomly selects a BB84 basis;
-3. measures the signal;
-4. resends a state corresponding to her measurement result.
+1. Intercepts the signal.
+2. Randomly selects a BB84 basis.
+3. Measures the signal.
+4. Resends a state corresponding to her measurement result.
 
 For a complete intercept-resend attack, the expected BB84 QBER is approximately:
 
@@ -158,7 +158,7 @@ The project uses the simplified asymptotic BB84 model:
 
 $$
 r(Q) =
-\max\left(0,1-2h_2(Q)\right)
+\max\left(0,\;1-2h_2(Q)\right)
 $$
 
 where the binary entropy is:
@@ -191,17 +191,21 @@ The notebook contains four main experiments.
 The first experiment establishes an ideal reference case:
 
 $$
-p_{\mathrm{noise}} =
-p_{\mathrm{loss}} =
-p_{\mathrm{Eve}} = 0
+p_{\mathrm{noise}}
+=
+p_{\mathrm{loss}}
+=
+p_{\mathrm{Eve}}
+=
+0
 $$
 
 Expected behavior:
 
-* approximately all signals survive;
-* QBER is close to zero;
-* approximately half of transmitted signals survive basis sifting;
-* the estimated secret-key rate approaches the ideal sifted fraction.
+* Approximately all signals survive.
+* QBER is close to zero.
+* Approximately half of transmitted signals survive basis sifting.
+* The estimated secret-key rate approaches the ideal sifted fraction.
 
 ### 2. Channel Noise
 
@@ -209,10 +213,10 @@ Channel noise is varied while loss and Eve are disabled.
 
 The experiment investigates:
 
-* QBER vs. noise probability;
-* secret-key rate vs. noise probability;
-* detection rate;
-* sifted-key fraction.
+* QBER vs. noise probability.
+* Secret-key rate vs. noise probability.
+* Detection rate.
+* Sifted-key fraction.
 
 The expected result is that increasing noise increases QBER and reduces estimated secret-key performance.
 
@@ -222,15 +226,15 @@ Eve's attack probability is varied while channel noise and loss are disabled.
 
 The experiment investigates:
 
-* QBER vs. Eve attack probability;
-* secret-key rate vs. Eve attack probability;
-* detection rate;
-* sifted-key fraction.
+* QBER vs. Eve attack probability.
+* Secret-key rate vs. Eve attack probability.
+* Detection rate.
+* Sifted-key fraction.
 
 For a full intercept-resend attack:
 
 $$
-p_{\mathrm{Eve}}=1
+p_{\mathrm{Eve}} = 1
 $$
 
 the simulated QBER should approach:
@@ -245,13 +249,13 @@ This provides a basic validation of the eavesdropping model.
 
 A two-dimensional parameter sweep varies:
 
-* channel noise probability;
+* Channel noise probability.
 * Eve attack probability.
 
 The resulting heatmaps visualize:
 
-* QBER across the parameter space;
-* estimated secret-key rate across the parameter space.
+* QBER across the parameter space.
+* Estimated secret-key rate across the parameter space.
 
 This provides the main combined view of the simulator and demonstrates how multiple sources of disturbance can jointly reduce QKD performance.
 
@@ -324,18 +328,24 @@ qkd-channel-simulator/
 ├── qkd_channel_simulator.ipynb
 │
 ├── src/
-│   ├── simulator.py
-│   ├── channel.py
-│   ├── metrics.py
-│   └── experiments.py
+│   └── qkd_simulator/
+│       ├── __init__.py
+│       ├── protocol.py
+│       ├── channel.py
+│       ├── attacks.py
+│       ├── metrics.py
+│       └── experiments.py
 │
-└── results/
-    ├── qber_vs_noise.png
-    ├── key_rate_vs_noise.png
-    ├── qber_vs_attack.png
-    ├── key_rate_vs_attack.png
-    ├── loss_vs_key_rate.png
-    └── security_heatmap.png
+├── results/
+│   ├── qber_vs_noise.png
+│   ├── key_rate_vs_noise.png
+│   ├── qber_vs_attack.png
+│   ├── key_rate_vs_attack.png
+│   ├── loss_vs_key_rate.png
+│   └── security_heatmap.png
+│
+└── tests/
+    └── test_simulator.py
 ```
 
 The notebook provides the main reproducible experiment workflow, while the Python modules contain the underlying simulation and analysis functions.
@@ -359,11 +369,11 @@ Qiskit is intentionally not required. The project focuses on probabilistic QKD p
 Clone the repository and enter the project directory:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/qkd-channel-simulator.git
+git clone https://github.com/ManarQuantum/qkd-channel-simulator.git
 cd qkd-channel-simulator
 ```
 
-Create and activate a virtual environment:
+Create and activate a virtual environment.
 
 ### Windows
 
@@ -417,28 +427,28 @@ This project intentionally uses a compact model rather than attempting to reprod
 
 It does not currently model:
 
-* explicit quantum state vectors or density matrices;
-* optical propagation;
-* atmospheric turbulence;
-* distance-dependent attenuation;
-* detector dark counts;
-* detector inefficiency;
-* background photons;
-* polarization drift;
-* decoy-state BB84;
-* finite-key security analysis;
-* composable security;
-* arbitrary quantum attacks;
-* quantum memories;
-* quantum repeaters;
-* multi-node quantum networks;
-* network routing or resource allocation.
+* Explicit quantum state vectors or density matrices.
+* Optical propagation.
+* Atmospheric turbulence.
+* Distance-dependent attenuation.
+* Detector dark counts.
+* Detector inefficiency.
+* Background photons.
+* Polarization drift.
+* Decoy-state BB84.
+* Finite-key security analysis.
+* Composable security.
+* Arbitrary quantum attacks.
+* Quantum memories.
+* Quantum repeaters.
+* Multi-node quantum networks.
+* Network routing or resource allocation.
 
 The secret-key-rate calculation is an idealized asymptotic estimate:
 
 $$
 R =
-q\max\left(0,1-2h_2(Q)\right)
+q\max\left(0,\;1-2h_2(Q)\right)
 $$
 
 and should therefore be interpreted as a performance-oriented estimate rather than a rigorous finite-key secret-key guarantee.
@@ -449,16 +459,16 @@ and should therefore be interpreted as a performance-oriented estimate rather th
 
 Possible extensions include:
 
-* finite-key statistical analysis;
-* more realistic detector models;
-* distance-dependent channel loss;
-* atmospheric and free-space optical effects;
-* decoy-state BB84;
-* additional attack models;
-* explicit quantum-state simulation;
-* realistic satellite-to-ground channel models;
-* integration with QKD network simulations;
-* heterogeneous quantum-link modeling.
+* Finite-key statistical analysis.
+* More realistic detector models.
+* Distance-dependent channel loss.
+* Atmospheric and free-space optical effects.
+* Decoy-state BB84.
+* Additional attack models.
+* Explicit quantum-state simulation.
+* Realistic satellite-to-ground channel models.
+* Integration with QKD network simulations.
+* Heterogeneous quantum-link modeling.
 
 These extensions would connect the simplified QKD-link model to broader studies of realistic quantum communication systems and, eventually, quantum-network performance.
 
