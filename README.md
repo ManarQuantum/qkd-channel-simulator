@@ -470,13 +470,7 @@ Importantly, the combined QBER is not simply the sum of the independent QBER con
 For the simplified model, an approximate combined error probability can be written as:
 
 $$
-Q
-\approx
-0.25p_{\mathrm{Eve}}
-+
-p_{\mathrm{noise}}
--
-0.5p_{\mathrm{Eve}}p_{\mathrm{noise}}
+Q \approx 0.25p_{\mathrm{Eve}} + p_{\mathrm{noise}} - 0.5p_{\mathrm{Eve}}p_{\mathrm{noise}}
 $$
 
 The simulation itself is used to capture the resulting behavior through Monte Carlo trials.
