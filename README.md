@@ -244,8 +244,7 @@ A low QBER indicates that the sifted key contains relatively few observed errors
 The binary entropy function is:
 
 $$
-h_2(Q)
-=
+h_2(Q) =
 -Q\log_2(Q)
 -(1-Q)\log_2(1-Q)
 $$
@@ -259,9 +258,8 @@ Binary entropy quantifies the uncertainty associated with a binary variable havi
 The simulator uses the simplified asymptotic expression:
 
 $$
-r(Q)
-=
-\max\left(0,1-2h_2(Q)\right)
+r(Q) =
+\max\left(0,\;1-2h_2(Q)\right)
 $$
 
 where $r(Q)$ represents the estimated secret-key fraction per sifted bit.
